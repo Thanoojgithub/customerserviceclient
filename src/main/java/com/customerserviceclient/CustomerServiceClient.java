@@ -47,4 +47,47 @@ public class CustomerServiceClient {
 		}
 		return customer;
 	}
+	
+	public String getCustomerPostPathParam(Integer id) {
+		String str = null;
+		webClient.reset();
+		webClient.path("/getCustomerPostPathParam/"+ id);
+		Response response = webClient.post(null);
+		if (response.getStatus() == 200) {
+			str = response.readEntity(String.class);
+			LOGGER.info("createCustomer :: " + str);
+		}else{
+			LOGGER.warn("createCustomer :: " + response.getStatus());
+		}
+		return str;
+	}
+	
+	public String getCustomerPostQueryParam(Integer id) {
+		String str = null;
+		webClient.reset();
+		webClient.path("/getCustomerPostQueryParam");
+		webClient.query("id",id);
+		Response response = webClient.post(null);
+		if (response.getStatus() == 200) {
+			str = response.readEntity(String.class);
+			LOGGER.info("createCustomer :: " + str);
+		}else{
+			LOGGER.warn("createCustomer :: " + response.getStatus());
+		}
+		return str;
+	}
+	
+	public Customer getCustomerPostRequestBody(String customerJson) {
+		Customer customer = null;
+		webClient.reset();
+		webClient.path("/getCustomerPostRequestBody");
+		Response response = webClient.post(customerJson);
+		if (response.getStatus() == 200) {
+			customer = response.readEntity(Customer.class);
+			LOGGER.info("createCustomer :: " + customer);
+		}else{
+			LOGGER.warn("createCustomer :: " + response.getStatus());
+		}
+		return customer;
+	}
 }
