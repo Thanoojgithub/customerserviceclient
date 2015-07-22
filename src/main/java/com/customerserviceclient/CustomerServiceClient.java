@@ -90,4 +90,18 @@ public class CustomerServiceClient {
 		}
 		return customer;
 	}
+	
+	public Customer getCustomerPostRequestBodyXml(Customer customerXml) {
+		Customer customer = null;
+		webClient.reset();
+		webClient.path("/getCustomerPostRequestBodyXml");
+		Response response = webClient.post(customerXml);
+		if (response.getStatus() == 200) {
+			customer = response.readEntity(Customer.class);
+			LOGGER.info("createCustomer :: " + customer);
+		}else{
+			LOGGER.warn("createCustomer :: " + response.getStatus());
+		}
+		return customer;
+	}
 }

@@ -23,7 +23,11 @@ public class App {
 			Gson gson = new Gson();
 			String customerJson = gson.toJson(newCustomer);
 			Customer customerPostRequestBody = customerServiceClient.getCustomerPostRequestBody(customerJson);
-			System.out.println(customerPostPathParam + " | "+customerPostQueryParam +" | "+customerPostRequestBody);
+			Customer customerPostRequestBodyXml = customerServiceClient.getCustomerPostRequestBodyXml(newCustomer);
+			System.out.println(customerPostPathParam);
+			System.out.println(customerPostQueryParam);
+			System.out.println(customerPostRequestBody);
+			System.out.println(customerPostRequestBodyXml);
 			}catch (Exception e) {
 				LOGGER.error("error :: " + e);
 			}
